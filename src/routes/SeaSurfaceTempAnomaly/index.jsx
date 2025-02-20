@@ -54,7 +54,7 @@ const SeaSurfaceTempAnamoly = () => {
             }
         };
 
-        const intervalId = setInterval(moveMap, 100);
+        const intervalId = setInterval(moveMap, 50);
 
         const handleMapClick = () => {
             setIsMoving(false);
@@ -85,7 +85,7 @@ const SeaSurfaceTempAnamoly = () => {
             <Container fluid className=''>
                 <Row>
                     <Col md={9}>
-                    <div id="map" className='mt-3 pt-3' style={{ width: '100%', height: '90vh', borderRadius: '10px' }}></div>
+                    <div id="map" className='mt-3 pt-3 i-border' style={{ width: '100%', height: '90vh', borderRadius: '10px' }}></div>
                     </Col>
                     <Col md={3}>
                         <Row>

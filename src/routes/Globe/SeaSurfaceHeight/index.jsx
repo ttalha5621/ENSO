@@ -46,7 +46,7 @@ const SeaSurfaceHeight = () => {
                 'tiles': [
                     'https://gibs.earthdata.nasa.gov/wms/epsg3857/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&LAYERS=JPL_MEaSUREs_L4_Sea_Surface_Height_Anomalies&VERSION=1.3.0&FORMAT=image/png&TRANSPARENT=true&WIDTH=256&HEIGHT=256&CRS=EPSG:3857&BBOX={bbox-epsg-3857}'
                 ],
-                'tileSize': 128
+                'tileSize': 512
             });
 
             map.addLayer({
@@ -67,7 +67,7 @@ const SeaSurfaceHeight = () => {
         <Container fluid>
             <Row>
                 <Col md={12}>
-                    <div id="ssh-map" className='mt-3' style={{ width: '100%', height: '40vh', borderRadius: '10px' }}></div>
+                    <div id="ssh-map" className='mt-3 i-border' style={{ width: '100%', height: '40vh', borderRadius: '10px' }}></div>
                 </Col>
             </Row>
         </Container>
