@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import ITCZVideo from '../../assets/19.mp4';
 import './itcz.css';
+import { useNavbar } from '../../components/NavbarContext';
 
 const InterTropicalConvergenceZones = () => {
+    const { setNavBackgroundColor } = useNavbar();
+
+    useEffect(() => {
+        setNavBackgroundColor('linear-gradient(to bottom, rgba(0,0,139), rgba(128,128,128))');
+        return () => {
+            setNavBackgroundColor('#1a1a1a');
+        };
+    }, [setNavBackgroundColor]);
     return (
         <>
 

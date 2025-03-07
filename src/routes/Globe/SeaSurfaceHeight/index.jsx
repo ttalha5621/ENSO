@@ -16,10 +16,10 @@ const SeaSurfaceHeight = () => {
         });
 
         // Disable default zoom controls
-        map.scrollZoom.disable();
-        map.boxZoom.disable();
-        map.doubleClickZoom.disable();
-        map.touchZoomRotate.disable();
+        // map.scrollZoom.disable();
+        // map.boxZoom.disable();
+        // map.doubleClickZoom.disable();
+        // map.touchZoomRotate.disable();
 
         map.on('load', () => {
             map.addSource('mapbox-dem', {
@@ -53,7 +53,7 @@ const SeaSurfaceHeight = () => {
                 'id': 'seasurfaceheight',
                 'type': 'raster',
                 'source': 'seasurfaceheight',
-                'paint': { 'raster-opacity': 1 },
+                'paint': { 'raster-opacity': 0.85 },
             });
             map.setLayoutProperty('seasurfaceheight', 'visibility', 'visible');
         });
@@ -67,7 +67,7 @@ const SeaSurfaceHeight = () => {
         <Container fluid>
             <Row>
                 <Col md={12}>
-                    <div id="ssh-map" className='mt-3 i-border' style={{ width: '100%', height: '40vh', borderRadius: '10px' }}></div>
+                    <div id="ssh-map" className='mt-3 i-border d-flex justify-content-center' style={{ width: '100%', height: '40vh', borderRadius: '10px' }}></div>
                 </Col>
             </Row>
         </Container>

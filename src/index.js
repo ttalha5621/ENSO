@@ -23,34 +23,43 @@ import MaddenJulianOscillation from "./routes/MaddenJullianOscillation";
 import InterTropicalConvergenceZone from "./routes/InterTropicalConvergenceZones";
 import Climate from "./routes/Climate";
 import "./App.css";
-import video from './assets/bg-video2.mp4'
+import video from './assets/bg-video1.mp4'
+import { NavbarProvider, useNavbar } from './components/NavbarContext';
+import GlobalSatelliteFeed from "./routes/GlobalSatelliteFeed";
 
-const AppLayout = () => (
-  <>
-    <div className="background">
-      <video
-        className="background-video"
-        width="100%"
-        height="auto"
-        autoPlay
-        muted
-        loop
-        controls
-      >
-        <source src={video} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <Navbar />
-      <Outlet />
-    </div>
-  </>
-);
+const AppLayout = () => {
+  const { navBackgroundColor } = useNavbar();
 
+  return (
+    <>
+      <div className="background">
+        <video
+          className="background-video"
+          width="100%"
+          height="auto"
+          autoPlay
+          muted
+          loop
+          controls
+        >
+          <source src={video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <Navbar backgroundColor={navBackgroundColor} />
+        <Outlet />
+      </div>
+    </>
+  );
+};
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
+      {
+        path: '/',
+        element: <ClimateZones />,
+      },
       {
         path: "/sst",
         element: <SeaSurfaceTemperature />,
@@ -84,10 +93,6 @@ const router = createBrowserRouter([
         element: <WeatherPatterns />,
       },
       {
-        path: '/',
-        element: <ClimateZones />,
-      },
-      {
         path: '/climate',
         element: <Climate />,
       },
@@ -110,11 +115,18 @@ const router = createBrowserRouter([
       {
         path: "/itcz",
         element: <InterTropicalConvergenceZone />,
+      },
+      {
+        path: "/feed",
+        element: <GlobalSatelliteFeed />,
+
       }
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <NavbarProvider>
+    <RouterProvider router={router} />
+  </NavbarProvider>
 );

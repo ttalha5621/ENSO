@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import IOD1 from '../../assets/15.mp4'
 import IOD2 from '../../assets/18.mp4'
 import IOD3 from '../../assets/16.jpg'
+import { useNavbar } from '../../components/NavbarContext'
 
 const IODIndianMonsoon = () => {
+    const { setNavBackgroundColor } = useNavbar();
+
+    useEffect(() => {
+        setNavBackgroundColor('linear-gradient(to bottom, rgba(0,0,139), rgba(218,165,32))');
+        return () => {
+            setNavBackgroundColor('#1a1a1a');
+        };
+    }, [setNavBackgroundColor]);
     return (
         <>
             <Container fluid >

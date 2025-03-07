@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import MJO from '../../assets/7.gif';
 import MJOVideo from '../../assets/12.mp4';
+import { useNavbar } from '../../components/NavbarContext';
 
 const MaddenJullaianOscillation = () => {
+        const { setNavBackgroundColor } = useNavbar();
+    
+        useEffect(() => {
+            setNavBackgroundColor('linear-gradient(to bottom, rgba(0,0,139), rgba(144,198,149))');
+            return () => {
+                setNavBackgroundColor('#1a1a1a');
+            };
+        }, [setNavBackgroundColor]);
     return (
         <>
             <Container fluid style={{ overflow: 'hidden', overflowY: 'hidden' }}>

@@ -7,21 +7,23 @@ import "../App.css";
 import { IconContext } from "react-icons";
 import Logo from '../assets/ndma_logo.png'
 import { Image } from "react-bootstrap";
+import { useNavbar } from './NavbarContext';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const { navBackgroundColor } = useNavbar();
 
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
       <IconContext.Provider value={{ color: "undefined" }}>
-        <div className="navbar">
-          <Image src={Logo } alt={'Logo'} width={50} />
+        <div className="navbar" style={{ background: navBackgroundColor }}>
+          <Image src={Logo} alt={'Logo'} width={50} />
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <div className="navbar-title fw-bold">Global Oceanic Monitoring Portal</div>
+          <div className="navbar-title fw-bold">GLOBAL OCEANIC MONITORING PORTAL</div>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
@@ -46,4 +48,5 @@ function Navbar() {
     </>
   );
 }
+
 export default Navbar;

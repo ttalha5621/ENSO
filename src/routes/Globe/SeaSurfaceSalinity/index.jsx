@@ -16,10 +16,10 @@ const SeaSurfaceSalinity = () => {
         });
 
         // Disable default zoom controls
-        map.scrollZoom.disable();
-        map.boxZoom.disable();
-        map.doubleClickZoom.disable();
-        map.touchZoomRotate.disable();
+        // map.scrollZoom.disable();
+        // map.boxZoom.disable();
+        // map.doubleClickZoom.disable();
+        // map.touchZoomRotate.disable();
 
         map.on('load', () => {
             map.addSource('mapbox-dem', {
@@ -53,7 +53,7 @@ const SeaSurfaceSalinity = () => {
                 'id': 'seasurfacesalinity',
                 'type': 'raster',
                 'source': 'seasurfacesalinity',
-                'paint': { 'raster-opacity': 1 },
+                'paint': { 'raster-opacity': 0.85 },
             });
             map.setLayoutProperty('seasurfacesalinity', 'visibility', 'visible');
         });

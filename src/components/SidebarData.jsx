@@ -76,4 +76,9 @@ export const SidebarData = [
     path: "/itcz",
     cName: "nav-text",
   },
+  {
+    title: "Global Satellite Feed",
+    path: "/feed",
+    cName: "nav-text",
+  },
 ];

@@ -9,7 +9,7 @@
 
 /* Navbar CSS */
 .navbar {
-  background: linear-gradient(to bottom, #00355a, #005f8f) !important;
+  /* background: linear-gradient(to bottom, #00355a, #005f8f) !important; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,8 @@
   text-align: center;
   color: #fff;
   font-size: 1.5rem;
-  transition: all 0.3s ease;  /* Fixed transition property */
+  transition: all 0.3s ease;
+  /* Fixed transition property */
 }
 
 .menu-bars {
@@ -42,21 +43,21 @@
 }
 
 .nav-menu {
-  background: linear-gradient(to right, #00355a, #005f8f) !important;
-  width: 300px;
-  height: 100vh;
+  background: linear-gradient(to right, rgba(0, 0, 139), rgba(128, 128, 128)) !important;
+  width: 320px;
+  height: calc(100vh - 60px);
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: -100%;
   transition: 850ms;
-  overflow-y: scroll hidden;
+  overflow-y: scroll;
   z-index: 10;
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
   scrollbar-width: thin;
-  scrollbar-color: #005f8f transparent;
+  scrollbar-color: rgba(128, 128, 128) transparent;
 }
 
 .nav-menu::-webkit-scrollbar {
@@ -96,7 +97,7 @@
 .nav-text a {
   color: #fff !important;
   text-decoration: none;
-  color: #151414;
+  /* color: #151414; */
   font-size: 18px;
   width: 95%;
   height: 100%;
@@ -121,7 +122,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
   transition: 0.5s;
 }
 
@@ -136,9 +137,9 @@
 .navbar-toggle {
   background: transparent !important;
   width: 100%;
-  height: 80px;
+  height: 50px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -160,33 +161,41 @@
   transition: all 1s ease;
   animation: gradualFade 2s ease-in;
 }
+
 @keyframes gradualFade {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
-@keyframes borderGlow {
+@keyframes blink {
   0% {
-    border-color: #ffffff;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    border-color: white !important;
   }
+
   50% {
-    border-color: #ffffff;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+    border-color: transparent;
   }
+
   100% {
-    border-color: #ffffff;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    border-color: white !important;
   }
 }
 
-/* Base styles for iframes */
 .i-border {
-  border: 3px solid #ffffff;  /* Changed to 2px solid white */
-  border-radius: auto;
-  animation: borderGlow 1s ease-in-out infinite;
+  border: 3px solid white;
+  animation: blink 1s infinite;
+}
+
+.title {
+  background: black;
+  color: yellow;
+  border: 1px solid yellow;
+  animation: blink 1s infinite;
+  border-radius: 10px;
+  padding: 3px 0px
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import ENSO from '../../assets/enso1.gif';
 import IOD from '../../assets/iod1.gif';
@@ -6,7 +6,16 @@ import PDO from '../../assets/MJO1.gif';
 import ENSOP from '../../assets/ENSOProb.mp4';
 import IOD2 from '../../assets/IOD2video.mp4';
 import './style.css';
+import { useNavbar } from '../../components/NavbarContext';
 const ClimateState = () => {
+  const { setNavBackgroundColor } = useNavbar();
+
+  useEffect(() => {
+      setNavBackgroundColor('linear-gradient(to bottom, rgba(0,0,139), rgba(128,128,128))');
+      return () => {
+          setNavBackgroundColor('#1a1a1a');
+      };
+  }, [setNavBackgroundColor]);
   return (
     <>
       <Container fluid >
