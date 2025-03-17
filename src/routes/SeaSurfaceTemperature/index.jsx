@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Container, Image, Row, Button } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Height from '../Globe/SeaSurfaceHeight/index.jsx';
 import Salinity from '../Globe/SeaSurfaceSalinity/index.jsx';
 import { useNavbar } from '../../components/NavbarContext.jsx';
 import image from '../../assets/a.png';
+import { FaPause, FaPlay } from 'react-icons/fa';
+import ReactDOMServer from 'react-dom/server';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZW5ncmtpIiwiYSI6ImNrc29yeHB2aDBieDEydXFoY240bXExcWoifQ.WS7GVtVGZb4xgHn9dleszQ';
 
@@ -38,23 +40,45 @@ const SeaSurfaceTemperature = () => {
         // Add Mapbox controls
         map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-
         map.on('load', () => {
-            map.addSource('seasurfacetemp', {
+            map.addSource('seasurfacecurrent', {
                 'type': 'raster',
                 'tiles': [
                     'https://gibs.earthdata.nasa.gov/wms/epsg3857/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&LAYERS=MODIS_Aqua_L2_Sea_Surface_Temp_Day&VERSION=1.3.0&FORMAT=image/png&TRANSPARENT=true&WIDTH=256&HEIGHT=256&CRS=EPSG:3857&BBOX={bbox-epsg-3857}'
                 ],
-                'tileSize': 512,
-                'attribution': 'NASA GIBS imagery'
+                'tileSize': 512
             });
+
             map.addLayer({
-                'id': 'seasurfacetemp',
+                'id': 'seasurfacecurrent',
                 'type': 'raster',
-                'source': 'seasurfacetemp',
+                'source': 'seasurfacecurrent',
                 'paint': { 'raster-opacity': 0.85 },
             });
-            map.setLayoutProperty('seasurfacetemp', 'visibility', 'visible');
+            map.setLayoutProperty('seasurfacecurrent', 'visibility', 'visible');
+
+            const togglePlayPause = () => {
+                setIsPlaying(!isPlaying);
+                if (!isPlaying) {
+                    userInteracting.current = false;
+                }
+            };
+            
+            // Add play/pause button to the map
+            const playPauseButton = document.createElement('button');
+            playPauseButton.className = 'mapboxgl-ctrl-icon mapboxgl-ctrl-play-pause';
+            playPauseButton.type = 'button';
+            playPauseButton.onclick = togglePlayPause;
+            playPauseButton.innerHTML = ReactDOMServer.renderToString(isPlaying ? <FaPause /> : <FaPlay />);
+
+            const playPauseControl = document.createElement('div');
+            playPauseControl.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
+            playPauseControl.appendChild(playPauseButton);
+
+            map.addControl({
+                onAdd: () => playPauseControl,
+                onRemove: () => playPauseControl.parentNode.removeChild(playPauseControl)
+            }, 'top-right');
         });
 
         const secondsPerRevolution = 120;
@@ -109,12 +133,6 @@ const SeaSurfaceTemperature = () => {
         };
     }, [isPlaying]);
 
-    const togglePlayPause = () => {
-        setIsPlaying(!isPlaying);
-        if (!isPlaying) {
-            userInteracting.current = false;
-        }
-    };
 
     return (
         <>
@@ -140,12 +158,9 @@ const SeaSurfaceTemperature = () => {
                                     borderRadius: '5px',
                                     pointerEvents: 'none'
                                 }}>
-                                <Image src={image} alt='Sea Surface Temp'  />
+                                <Image src={image} alt='Sea Surface Temp' />
                             </div>
                         </div>
-                        <Button onClick={togglePlayPause} className="mt-2">
-                            {isPlaying ? 'Pause' : 'Play'}
-                        </Button>
                     </Col>
                     <Col md={3} className='px-1'>
                         <Row>

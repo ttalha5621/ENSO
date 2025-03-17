@@ -120,8 +120,8 @@ const PrecipitationRate = () => {
     return (
         <>
             <Container fluid className=''>
-                <Row>
-                    <Col md={9} className='px-5'>
+                <Row className='px-2'>
+                    <Col md={9} className='px-3'>
                         <div id="map" className='mt-3 pt-3 i-border position-relative' style={{
                             width: '100%',
                             height: '88.5vh',
@@ -137,6 +137,8 @@ const PrecipitationRate = () => {
                             <div className="position-absolute bottom-0 start-50 translate-middle-x mb-1"
                                 style={{
                                     zIndex: 1000,
+                                    border: '3px solid #000',
+                                    borderRadius: '5px',
                                     pointerEvents: 'none'
                                 }}>
                                 <Image src={image} alt='Sea Surface Temp' fluid />
@@ -146,7 +148,7 @@ const PrecipitationRate = () => {
                             {isPlaying ? 'Pause' : 'Play'}
                         </Button>
                     </Col>
-                    <Col md={3} className='px-3'>
+                    <Col md={3} className='px-1'>
                         <Row>
                             <Col md={12}>
                                 <Height />

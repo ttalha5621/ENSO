@@ -15,11 +15,11 @@ const EnergyBudget = () => {
     return (
         <>
             <Container fluid >
-                <Row>
-                    <Col md={12} className='d-flex justify-content-md-around my-2'>
-                        <div id="iframeContainer" className='mt-2 pt-2 rounded-2 ' style={{ width: '95%', height: '90vh' }}>
+                <Row className="justify-content-center">
+                    <Col md={12} className='d-flex justify-content-center my-2 mx-3'>
+                        <div id="iframeContainer" className='mt-2 pt-2 rounded-2' style={{ width: '95%', height: '90vh', maxWidth: 'auto' }}>
                             <iframe
-                                src="https://earth.nullschool.net/#current/ocean/surface/level/overlay=sea_surface_temp/patterson=137.56,4.44,413/loc=67.842,22.152"
+                                src="https://earth.nullschool.net/#current/ocean/surface/level/overlay=sea_surface_temp/patterson=137.56,4.44,413/loc=73.084,33.680"
                                 style={{ border: 0, width: '100%', height: '100%', borderRadius: '10px' }}
                                 title="Sea Surface Temperature"
                             ></iframe>

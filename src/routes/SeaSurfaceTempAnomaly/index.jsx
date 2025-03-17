@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Height from '../Globe/SeaSurfaceHeight/index.jsx';
 import Salinity from '../Globe/SeaSurfaceSalinity/index.jsx';
 import { useNavbar } from '../../components/NavbarContext.jsx';
 import image from '../../assets/e.png'
+import { FaPause, FaPlay } from 'react-icons/fa';
+import ReactDOMServer from 'react-dom/server';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZW5ncmtpIiwiYSI6ImNrc29yeHB2aDBieDEydXFoY240bXExcWoifQ.WS7GVtVGZb4xgHn9dleszQ';
 
@@ -54,6 +56,28 @@ const SeaSurfaceTempAnamoly = () => {
             });
 
             map.setLayoutProperty('seasurfaceanomaly', 'visibility', 'visible');
+            const togglePlayPause = () => {
+                setIsPlaying(!isPlaying);
+                if (!isPlaying) {
+                    userInteracting.current = false;
+                }
+            };
+            
+            // Add play/pause button to the map
+            const playPauseButton = document.createElement('button');
+            playPauseButton.className = 'mapboxgl-ctrl-icon mapboxgl-ctrl-play-pause';
+            playPauseButton.type = 'button';
+            playPauseButton.onclick = togglePlayPause;
+            playPauseButton.innerHTML = ReactDOMServer.renderToString(isPlaying ? <FaPause /> : <FaPlay />);
+
+            const playPauseControl = document.createElement('div');
+            playPauseControl.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
+            playPauseControl.appendChild(playPauseButton);
+
+            map.addControl({
+                onAdd: () => playPauseControl,
+                onRemove: () => playPauseControl.parentNode.removeChild(playPauseControl)
+            }, 'top-right');
         });
 
         const secondsPerRevolution = 120;
@@ -108,19 +132,11 @@ const SeaSurfaceTempAnamoly = () => {
         };
     }, [isPlaying]);
 
-    const togglePlayPause = () => {
-        setIsPlaying(!isPlaying);
-        if (!isPlaying) {
-            userInteracting.current = false;
-        }
-    };
-
-
     return (
         <>
             <Container fluid className=''>
-            <Row>
-                    <Col md={9} className='px-5'>
+                <Row className='px-2'>
+                    <Col md={9} className='px-3'>
                         <div id="map" className='mt-3 pt-3 i-border position-relative' style={{
                             width: '100%',
                             height: '88.5vh',
@@ -136,16 +152,15 @@ const SeaSurfaceTempAnamoly = () => {
                             <div className="position-absolute bottom-0 start-50 translate-middle-x mb-1"
                                 style={{
                                     zIndex: 1000,
+                                    border: '3px solid #000',
+                                    borderRadius: '5px',
                                     pointerEvents: 'none'
                                 }}>
                                 <Image src={image} alt='Sea Surface Temp' fluid />
                             </div>
                         </div>
-                        <Button onClick={togglePlayPause} className="mt-2">
-                            {isPlaying ? 'Pause' : 'Play'}
-                        </Button>
                     </Col>
-                    <Col md={3} className='px-3'>
+                    <Col md={3} className='px-1'>
                         <Row>
                             <Col md={12}>
                                 <Height />

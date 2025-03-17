@@ -31,15 +31,20 @@ export const SidebarData = [
     path: "/ssta",
     cName: "nav-text",
   },
-  {
-    title: "Precipitation Rate",
-    path: "/precipitation-rate",
-    cName: "nav-text",
-  },
+  // {
+  //   title: "Precipitation Rate",
+  //   path: "/precipitation-rate",
+  //   cName: "nav-text",
+  // },
   {
     title: "Energy Budget",
     path: "/energy-budget",
     cName: "nav-text",
+  },
+  {
+    title: "Climate Zones",
+    path: '/climate',
+    cName:'nav-text '
   },
   {
     title: "Weather Patterns",
@@ -50,11 +55,6 @@ export const SidebarData = [
     title: "Climate State",
     path: "/climate-state",
     cName: "nav-text",
-  },
-  {
-    title: "Climate Zones",
-    path: '/climate',
-    cName:'nav-text '
   },
   {
     title: "Simex",

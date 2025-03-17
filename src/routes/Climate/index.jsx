@@ -26,7 +26,7 @@ const Climate = () => {
                     }}>
                         {/* Iframe */}
                         <iframe className="iframe" ref={iframeRef}
-                            src="https://fluid-earth.byrd.osu.edu/#date=2024-12-01T00%3A00%3A00.000Z&gdata=average+temperature+at+2+m+above+ground&pdata=none&proj=equirectangular&lat=33.49&lon=60.96&zoom=1.95&smode=false&kmode=false&pins=%5B%5D"
+                            src="https://fluid-earth.byrd.osu.edu/#date=2025-02-01T00%3A00%3A00.000Z&gdata=average+temperature+at+2+m+above+ground&pdata=none&proj=equirectangular&lat=33.49&lon=60.96&zoom=1.95&smode=false&kmode=false&pins=%5B%5D"
                             style={{
                                 width: '100%',
                                 height: '100%',

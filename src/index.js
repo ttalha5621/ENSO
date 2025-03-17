@@ -12,7 +12,7 @@ import SeaSurfaceCurrents from "./routes/SeaSurfaceCurrents";
 import SeaSurfaceHeight from "./routes/SeaSurfaceHeight";
 import SeaSurfaceSalinity from "./routes/SeaSurfaceSalinity";
 import SeaSurfaceTempAnomaly from "./routes/SeaSurfaceTempAnomaly";
-import PrecipitationRate from "./routes/PrecipitationRate";
+// import PrecipitationRate from "./routes/PrecipitationRate";
 import EnergyBudget from "./routes/EnergyBudget";
 import WeatherPatterns from "./routes/WeatherPatterns";
 import ClimateZones from "./routes/ClimateZones";
@@ -79,10 +79,6 @@ const router = createBrowserRouter([
       {
         path: "/ssta",
         element: <SeaSurfaceTempAnomaly />,
-      },
-      {
-        path: "/precipitation-rate",
-        element: <PrecipitationRate />,
       },
       {
         path: "/energy-budget",
