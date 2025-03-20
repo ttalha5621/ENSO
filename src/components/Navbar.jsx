@@ -18,12 +18,19 @@ function Navbar() {
   return (
     <>
       <IconContext.Provider value={{ color: "undefined" }}>
-        <div className="navbar" style={{ background: navBackgroundColor }}>
-          <Image src={Logo} alt={'Logo'} width={50} />
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-          <div className="navbar-title fw-bold">GLOBAL OCEANIC MONITORING PORTAL</div>
+        <div className="navbar d-flex justify-content-between" style={{ background: navBackgroundColor }}>
+          <div className="left">
+            <Image src={Logo} alt={'Logo'} width={50} />
+            <Link to="#" className="menu-bars">
+              <FaIcons.FaBars onClick={showSidebar} />
+            </Link>
+          </div>
+          <div className="center">
+            <div className="navbar-title fw-bold">GLOBAL OCEANIC AND ATMOSPHERIC OSCILLATION</div>
+          </div>
+          <div className="right">
+            <div className="navbar-title fw-bold bg-white px-2" style={{color:'green' ,borderRadius:'5px'}}>G-11</div>
+          </div>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>

@@ -157,7 +157,7 @@ const SeaSurfaceCurrents = () => {
                                     borderRadius: '5px',
                                     pointerEvents: 'none'
                                 }}>
-                                <Image src={image} alt='Sea Surface Temp' fluid />
+                                <Image src={image} alt='Sea Surface Temp' width={300}  />
                             </div>
                         </div>
                     </Col>

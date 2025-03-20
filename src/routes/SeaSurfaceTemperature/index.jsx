@@ -63,7 +63,7 @@ const SeaSurfaceTemperature = () => {
                     userInteracting.current = false;
                 }
             };
-            
+
             // Add play/pause button to the map
             const playPauseButton = document.createElement('button');
             playPauseButton.className = 'mapboxgl-ctrl-icon mapboxgl-ctrl-play-pause';
@@ -156,9 +156,9 @@ const SeaSurfaceTemperature = () => {
                                     zIndex: 1000,
                                     border: '3px solid #000',
                                     borderRadius: '5px',
-                                    pointerEvents: 'none'
+                                    pointerEvents: 'none',
                                 }}>
-                                <Image src={image} alt='Sea Surface Temp' />
+                                <Image src={image} alt='Sea Surface Temp' width={300} />
                             </div>
                         </div>
                     </Col>
