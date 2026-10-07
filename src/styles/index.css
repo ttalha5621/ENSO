@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Sora', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-ink-950: #050a14;
+  --color-ink-900: #0a1222;
+  --color-ink-800: #101b30;
+  --color-ink-700: #18263f;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-shimmer: shimmer 1.8s linear infinite;
+  --animate-pulse-ring: pulse-ring 2s ease-out infinite;
+  --animate-sweep: sweep 2.4s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+  @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.7; } 100% { transform: scale(2.4); opacity: 0; } }
+  @keyframes sweep { to { transform: rotate(360deg); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+}
+
+/* ───────── Design tokens (dark default, light override) ───────── */
+:root {
+  color-scheme: dark;
+  --bg: #050a14;
+  --bg-grad-1: rgba(14, 165, 233, 0.16);
+  --bg-grad-2: rgba(139, 92, 246, 0.14);
+  --glass: rgba(13, 22, 40, 0.62);
+  --glass-strong: rgba(10, 18, 34, 0.86);
+  --glass-soft: rgba(255, 255, 255, 0.04);
+  --glass-hover: rgba(255, 255, 255, 0.07);
+  --border: rgba(148, 197, 255, 0.12);
+  --border-strong: rgba(148, 197, 255, 0.22);
+  --text: #c7d2e4;
+  --text-strong: #f1f5ff;
+  --text-muted: #8392ab;
+  --shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+  --ring: rgba(56, 189, 248, 0.55);
+  --ai-from: #8b5cf6;
+  --ai-to: #d946ef;
+  --font-script: var(--font-sans);
+}
+
+:root.light {
+  color-scheme: light;
+  --bg: #eef3fa;
+  --bg-grad-1: rgba(14, 165, 233, 0.14);
+  --bg-grad-2: rgba(139, 92, 246, 0.1);
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-strong: rgba(255, 255, 255, 0.9);
+  --glass-soft: rgba(15, 23, 42, 0.035);
+  --glass-hover: rgba(15, 23, 42, 0.06);
+  --border: rgba(15, 23, 42, 0.09);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --text: #334155;
+  --text-strong: #0b1220;
+  --text-muted: #64748b;
+  --shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.18), 0 2px 6px -2px rgba(15, 23, 42, 0.08);
+  --ring: rgba(2, 132, 199, 0.5);
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-script), var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+html[dir='rtl'] body { line-height: 1.8; }
+
+::selection { background: rgba(56, 189, 248, 0.35); color: var(--text-strong); }
+
+:where(:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* ───────── Glass primitives ───────── */
+@utility glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+@utility glass-strong {
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+@utility text-strong { color: var(--text-strong); }
+@utility text-muted { color: var(--text-muted); }
+@utility border-line { border-color: var(--border); }
+@utility ai-gradient { background-image: linear-gradient(135deg, var(--ai-from), var(--ai-to)); }
+@utility ai-text {
+  background-image: linear-gradient(135deg, #a78bfa, #f0abfc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility skeleton {
+  background: linear-gradient(90deg, var(--glass-soft) 25%, var(--glass-hover) 50%, var(--glass-soft) 75%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+@utility font-display { font-family: var(--font-script), var(--font-display); letter-spacing: -0.015em; }
+
+/* Ambient background used behind full-page views */
+.ambient {
+  background:
+    radial-gradient(1100px 600px at 10% -10%, var(--bg-grad-1), transparent 60%),
+    radial-gradient(900px 600px at 110% 10%, var(--bg-grad-2), transparent 60%),
+    var(--bg);
+}
+
+/* ───────── Mapbox control theming ───────── */
+.mapboxgl-ctrl-group {
+  background: var(--glass) !important;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 12px !important;
+  box-shadow: var(--shadow) !important;
+  overflow: hidden;
+}
+.mapboxgl-ctrl-group button { width: 34px !important; height: 34px !important; }
+.mapboxgl-ctrl-group button + button { border-top: 1px solid var(--border) !important; }
+.mapboxgl-ctrl-group button:hover { background-color: var(--glass-hover) !important; }
+.dark .mapboxgl-ctrl-group .mapboxgl-ctrl-icon { filter: invert(1) hue-rotate(180deg) brightness(1.1); }
+.mapboxgl-ctrl-scale {
+  background: var(--glass) !important;
+  color: var(--text) !important;
+  border-color: var(--text-muted) !important;
+  font: 500 10px var(--font-mono);
+  border-radius: 0 0 4px 4px;
+}
+.mapboxgl-ctrl-attrib { background: var(--glass) !important; border-radius: 8px 0 0 0; }
+.mapboxgl-ctrl-attrib a { color: var(--text-muted) !important; }
+.mapboxgl-ctrl-logo { opacity: 0.75; }
+.mapboxgl-canvas:focus-visible { outline: none; }
+.mapboxgl-map { font-family: var(--font-sans); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+.reduce-motion *, .reduce-motion *::before, .reduce-motion *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+
+/* ───────── Print (situation report) ───────── */
+@media print {
+  body { overflow: visible; background: #fff; color: #000; }
+  body * { visibility: hidden; }
+  #print-report, #print-report * { visibility: visible; }
+  #print-report { position: absolute; inset: 0; padding: 24px; color: #000; background: #fff; }
+}
+
+/* Light theme: deepen the pastel accent text used on dark glass so it stays readable */
+.light .text-violet-200, .light .text-violet-300 { color: #6d28d9; }
+.light .text-sky-300, .light .text-sky-400 { color: #0369a1; }
+.light .text-cyan-300, .light .text-cyan-400 { color: #0e7490; }
+.light .text-emerald-300, .light .text-emerald-400 { color: #047857; }
+.light .text-amber-300, .light .text-amber-400 { color: #b45309; }
+.light .text-orange-300, .light .text-orange-400 { color: #c2410c; }
+.light .text-red-300, .light .text-red-400 { color: #b91c1c; }
+.light .text-blue-400 { color: #1d4ed8; }
+.light .ai-text { background-image: linear-gradient(135deg, #7c3aed, #c026d3); }

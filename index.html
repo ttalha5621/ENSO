@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#050a14" />
+    <meta name="description" content="NDMA ENSO Command Center — AI-assisted GIS monitoring of ENSO, IOD, MJO and ocean conditions." />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/ndma_logo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
+    <link rel="preconnect" href="https://gibs.earthdata.nasa.gov" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+    <title>ENSO Command Center · NDMA</title>
+    <script>
+      // Apply the saved theme before first paint (no flash).
+      try {
+        var p = JSON.parse(localStorage.getItem('enso.prefs.v2') || '{}');
+        var t = (p.ui && p.ui.theme) || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.className = t;
+      } catch (e) {}
+    </script>
+    <style>
+      /* Boot splash — pure CSS so it shows instantly while JS chunks stream in */
+      #boot { position: fixed; inset: 0; display: grid; place-items: center; background: #050a14; z-index: 9999; transition: opacity .5s ease, visibility .5s; }
+      html.light #boot { background: #eef3fa; }
+      #boot.hide { opacity: 0; visibility: hidden; }
+      #boot .orb { position: relative; width: 84px; height: 84px; border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #67e8f9, #0284c7 45%, #0c1a33 75%); box-shadow: 0 0 60px -6px #0ea5e9; }
+      #boot .orb::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; border: 2px solid transparent;
+        border-top-color: #22d3ee; border-right-color: #a78bfa; animation: bootspin 1.1s linear infinite; }
+      #boot .orb::after { content: ''; position: absolute; inset: 0; border-radius: 50%;
+        background: repeating-linear-gradient(90deg, transparent 0 9px, rgba(255,255,255,.12) 9px 10px); animation: bootpan 3s linear infinite; mask: radial-gradient(circle, #000 69%, transparent 70%); }
+      #boot p { margin: 28px 0 0; font: 600 12px/1 'Sora', system-ui, sans-serif; letter-spacing: .32em; color: #7dd3fc; text-align: center; }
+      @keyframes bootspin { to { transform: rotate(360deg); } }
+      @keyframes bootpan { to { background-position: 40px 0; } }
+      @media (prefers-reduced-motion: reduce) { #boot .orb::before, #boot .orb::after { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="boot" aria-hidden="true"><div><div class="orb"></div><p>ENSO · NDMA</p></div></div>
+    <div id="root"></div>
+    <noscript>This portal needs JavaScript enabled.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

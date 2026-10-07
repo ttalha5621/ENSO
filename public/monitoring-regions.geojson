@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "id": 1, "properties": { "name": "Niño 1+2", "index": "ENSO", "bounds": "0°–10°S, 90°W–80°W", "color": "#f97316", "note": "Coastal South America; responds first to eastern-Pacific (‘coastal’) El Niño." },
+      "geometry": { "type": "Polygon", "coordinates": [[[-90, 0], [-80, 0], [-80, -10], [-90, -10], [-90, 0]]] } },
+    { "type": "Feature", "id": 2, "properties": { "name": "Niño 3", "index": "ENSO", "bounds": "5°N–5°S, 150°W–90°W", "color": "#fb7185", "note": "Eastern equatorial Pacific; historically the main ENSO monitoring region." },
+      "geometry": { "type": "Polygon", "coordinates": [[[-150, 5], [-90, 5], [-90, -5], [-150, -5], [-150, 5]]] } },
+    { "type": "Feature", "id": 3, "properties": { "name": "Niño 3.4", "index": "ENSO", "bounds": "5°N–5°S, 170°W–120°W", "color": "#facc15", "note": "Used for the Oceanic Niño Index (ONI), NOAA’s official ENSO indicator." },
+      "geometry": { "type": "Polygon", "coordinates": [[[-170, 5], [-120, 5], [-120, -5], [-170, -5], [-170, 5]]] } },
+    { "type": "Feature", "id": 4, "properties": { "name": "Niño 4", "index": "ENSO", "bounds": "5°N–5°S, 160°E–150°W", "color": "#a78bfa", "note": "Central-western Pacific; tracks ‘Modoki’ / central-Pacific El Niño events." },
+      "geometry": { "type": "Polygon", "coordinates": [[[160, 5], [210, 5], [210, -5], [160, -5], [160, 5]]] } },
+    { "type": "Feature", "id": 5, "properties": { "name": "IOD West Pole (WTIO)", "index": "IOD", "bounds": "10°N–10°S, 50°E–70°E", "color": "#22d3ee", "note": "Western tropical Indian Ocean; the Dipole Mode Index is West minus East SST anomaly." },
+      "geometry": { "type": "Polygon", "coordinates": [[[50, 10], [70, 10], [70, -10], [50, -10], [50, 10]]] } },
+    { "type": "Feature", "id": 6, "properties": { "name": "IOD East Pole (SETIO)", "index": "IOD", "bounds": "0°–10°S, 90°E–110°E", "color": "#34d399", "note": "South-eastern tropical Indian Ocean off Sumatra/Java." },
+      "geometry": { "type": "Polygon", "coordinates": [[[90, 0], [110, 0], [110, -10], [90, -10], [90, 0]]] } }
+  ]
+}
